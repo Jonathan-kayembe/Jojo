@@ -1,7 +1,7 @@
 {
-  "name": "arbre-coeurs-anime",
+  "name": "jojo-birthday-card",
   "version": "1.0.0",
-  "description": "Site web animé avec arbre de cœurs",
+  "description": "Carte d'anniversaire interactive avec cœurs animés",
   "type": "module",
   "scripts": {
     "dev": "vite",

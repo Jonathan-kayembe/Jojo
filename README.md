@@ -1,15 +1,16 @@
-# 🌳 Arbre de Cœurs Animé
+# 💖 Carte d'Anniversaire Animée
 
-Un site web React interactif et émotionnel qui affiche un arbre animé avec des feuilles en forme de cœur et un message personnalisé.
+Une carte d'anniversaire interactive et émotionnelle créée avec React, présentant des centaines de cœurs animés dispersés autour d'un message personnalisé centré.
 
 ## ✨ Fonctionnalités
 
-- 🌲 Animation progressive d'un arbre qui pousse
-- 💖 Feuilles en forme de cœur avec animation de flottement
-- ✍️ Message avec effet machine à écrire
-- 🎨 Design élégant sur fond sombre
+- 💖 Plus de 600 cœurs animés dispersés sur l'écran
+- ✍️ Message centré avec effet machine à écrire
+- 🎨 Design élégant sur fond sombre avec effets de lueur
+- 🌊 Animation de flottement pour chaque cœur
 - 📱 Responsive (desktop et mobile)
 - 🎁 Message personnalisable via URL
+- 🎯 Zone protégée autour du texte pour une lisibilité optimale
 
 ## 🚀 Installation
 
@@ -27,7 +28,7 @@ npm run build
 ## 🎁 Utilisation
 
 ### Message par défaut
-Ouvrez simplement le site dans votre navigateur.
+Ouvrez simplement le site dans votre navigateur. Cliquez sur le cœur pour démarrer l'animation.
 
 ### Message personnalisé
 Ajoutez un paramètre `message` dans l'URL :
@@ -38,8 +39,10 @@ http://localhost:5173/?message=Votre%20message%20personnalisé
 
 Exemple :
 ```
-http://localhost:5173/?message=Joyeux%20Anniversaire%20%F0%9F%8E%89%0AQue%20tous%20tes%20r%C3%AAves%20se%20r%C3%A9alisent
+http://localhost:5173/?message=Hey%20Jojo%2C%0AHappy%20Birthday%0AMay%20God%20bless%20you
 ```
+
+**Note :** Utilisez `%0A` pour les sauts de ligne dans l'URL.
 
 ## 🛠️ Technologies
 
@@ -56,8 +59,9 @@ src/
 ├── App.jsx                 # Composant principal
 ├── main.jsx               # Point d'entrée
 ├── components/
-│   ├── TreeCanvas.jsx    # Animation de l'arbre
-│   └── AnimatedMessage.jsx # Message animé
+│   ├── HeartCanvas.jsx    # Animation des cœurs dispersés
+│   ├── AnimatedMessage.jsx # Message animé avec effet machine à écrire
+│   └── IntroScreen.jsx    # Écran d'introduction avec cœur cliquable
 └── styles/
     └── main.css          # Styles principaux
 ```
@@ -65,10 +69,12 @@ src/
 ## 🎨 Personnalisation
 
 Vous pouvez modifier :
-- Les couleurs des cœurs dans `TreeCanvas.jsx`
-- Le message par défaut dans `App.jsx`
-- Les styles dans `main.css`
-- La vitesse d'animation dans les composants
+- **Les couleurs des cœurs** : Modifiez la palette dans `HeartCanvas.jsx`
+- **Le nombre de cœurs** : Changez `numHearts` dans `HeartCanvas.jsx` (actuellement 600)
+- **Le message par défaut** : Modifiez le message dans `App.jsx`
+- **Les styles** : Personnalisez les couleurs, tailles et effets dans `main.css`
+- **La vitesse d'animation** : Ajustez les délais et vitesses dans les composants
+- **La zone protégée** : Modifiez `textZoneRadius` pour changer l'espace autour du texte
 
 ## 📝 Licence
 
