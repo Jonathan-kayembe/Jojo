@@ -78,33 +78,36 @@ Vous pouvez modifier :
 
 ## 🚀 Déploiement sur GitHub Pages
 
-Ce projet est configuré pour être déployé automatiquement sur GitHub Pages.
+Ce projet est configuré pour être déployé automatiquement sur GitHub Pages via une branche `gh-pages` (méthode la plus fiable).
 
-### Configuration
+### 1) Vérifier le `base` Vite
 
-1. **Important** : Modifiez le nom du dépôt dans `vite.config.js` si votre dépôt GitHub a un nom différent :
-   ```js
-   base: process.env.GITHUB_PAGES ? '/VOTRE-NOM-DE-REPO/' : '/',
-   ```
+Dans `vite.config.js`, adapte le nom du dépôt si besoin :
 
-2. **Pousser le code** (GitHub Pages sera activé automatiquement) :
-   ```bash
-   git add .
-   git commit -m "Setup GitHub Pages deployment"
-   git push origin main
-   ```
-
-4. Le workflow GitHub Actions se déclenchera automatiquement et déploiera votre site.
-
-5. Votre site sera accessible à : `https://VOTRE-USERNAME.github.io/VOTRE-NOM-DE-REPO/`
-
-### Déploiement manuel
-
-Si vous préférez déployer manuellement :
-```bash
-npm run build
-# Copiez le contenu du dossier dist/ dans la branche gh-pages
+```js
+base: process.env.GITHUB_PAGES ? '/VOTRE-NOM-DE-REPO/' : '/',
 ```
+
+### 2) Activer Pages sur la branche `gh-pages`
+
+Sur GitHub : **Settings → Pages**
+
+- **Source** : `Deploy from a branch`
+- **Branch** : `gh-pages` / `(root)`
+
+### 3) Push
+
+```bash
+git add .
+git commit -m "Deploy to GitHub Pages"
+git push origin main
+```
+
+Le workflow **Actions** va builder et pousser le dossier `dist/` dans la branche `gh-pages`.
+
+### URL
+
+Ton site sera accessible à : `https://VOTRE-USERNAME.github.io/VOTRE-NOM-DE-REPO/`
 
 ## 📝 Licence
 
