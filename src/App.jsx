@@ -35,12 +35,7 @@ function App() {
       ) : (
         <>
           <HeartCanvas />
-          {showMessage && (
-            <AnimatedMessage
-              message={message}
-              className="animated-message animated-message--in-heart"
-            />
-          )}
+          {showMessage && <AnimatedMessage message={message} />}
         </>
       )}
     </div>

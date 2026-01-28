@@ -11,23 +11,17 @@ const IntroScreen = ({ onStart }) => {
     if (!ctx) return;
 
     // Taille plus nette (retina-safe)
-    // Taille responsive (le inline style doit rester cohérent avec le mobile)
-    const shortestSide = Math.min(window.innerWidth, window.innerHeight);
-    const cssSize = Math.round(Math.min(190, Math.max(110, shortestSide * 0.22)));
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width = Math.floor(cssSize * dpr);
-    canvas.height = Math.floor(cssSize * dpr);
-    canvas.style.width = `${cssSize}px`;
-    canvas.style.height = `${cssSize}px`;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const size = 140;
+    canvas.width = size;
+    canvas.height = size;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = "high";
 
-    const cx = cssSize / 2;
-    const cy = cssSize / 2;
-    const s = cssSize * 0.33;
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2;
+    const s = 45;
 
     ctx.fillStyle = "#FF6F91";
     ctx.shadowBlur = 10;
