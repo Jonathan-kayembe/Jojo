@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const AnimatedMessage = ({ message }) => {
+const AnimatedMessage = ({ message, className = 'animated-message' }) => {
   const [displayedText, setDisplayedText] = useState('')
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -19,7 +19,7 @@ const AnimatedMessage = ({ message }) => {
   const lines = displayedText.split('\n')
 
   return (
-    <div className="animated-message">
+    <div className={className}>
       {lines.map((line, index) => (
         <div key={index} className="message-line">
           {line}
