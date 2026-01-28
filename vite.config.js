@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: process.env.GITHUB_PAGES ? '/jojo-birthday-card/' : '/',
+  // IMPORTANT: doit correspondre exactement au nom du repo GitHub (ici: "Jojo")
+  base: process.env.GITHUB_PAGES ? '/Jojo/' : '/',
 })
 
