@@ -87,12 +87,7 @@ Ce projet est configuré pour être déployé automatiquement sur GitHub Pages.
    base: process.env.GITHUB_PAGES ? '/VOTRE-NOM-DE-REPO/' : '/',
    ```
 
-2. **Activer GitHub Pages** :
-   - Allez dans les paramètres de votre dépôt GitHub
-   - Section "Pages" dans le menu de gauche
-   - Source : sélectionnez "GitHub Actions"
-
-3. **Pousser le code** :
+2. **Pousser le code** (GitHub Pages sera activé automatiquement) :
    ```bash
    git add .
    git commit -m "Setup GitHub Pages deployment"
