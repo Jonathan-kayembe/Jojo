@@ -6,53 +6,48 @@ const IntroScreen = ({ onStart }) => {
   useEffect(() => {
     const canvas = heartRef.current;
     if (!canvas) return;
-
+  
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
-    // Taille plus nette (retina-safe)
-    const size = 140;
+  
+    // Taille du canvas
+    const size = 160;
     canvas.width = size;
     canvas.height = size;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+    ctx.clearRect(0, 0, size, size);
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = "high";
-
-    const cx = canvas.width / 2;
-    const cy = canvas.height / 2;
-    const s = 45;
-
+  
+    const cx = size / 2;
+    const cy = size / 2;
+    const s = 50;
+  
+    // Couleur rose vibrante
     ctx.fillStyle = "#FF6F91";
-    ctx.shadowBlur = 10;
+    
+    // Lueur douce
+    ctx.shadowBlur = 15;
     ctx.shadowColor = "#FFB6C1";
-
+  
     ctx.beginPath();
-
-    // ❤️ Cœur mathématique (beaucoup plus propre)
-    ctx.moveTo(cx, cy + s / 2);
-
-    ctx.bezierCurveTo(
-      cx + s,
-      cy - s / 3,
-      cx + s * 1.4,
-      cy + s / 1.5,
-      cx,
-      cy + s * 1.8
-    );
-
-    ctx.bezierCurveTo(
-      cx - s * 1.4,
-      cy + s / 1.5,
-      cx - s,
-      cy - s / 3,
-      cx,
-      cy + s / 2
-    );
-
+  
+    // Forme de cœur classique et simple (coordonnées relatives au centre)
+    ctx.moveTo(cx, cy + s * 0.3);
+    
+    // Côté gauche
+    ctx.bezierCurveTo(cx, cy, cx - s / 2, cy, cx - s / 2, cy + s * 0.3);
+    ctx.bezierCurveTo(cx - s / 2, cy + s * 0.7, cx, cy + s * 0.7, cx, cy + s);
+    
+    // Côté droit
+    ctx.bezierCurveTo(cx, cy + s * 0.7, cx + s / 2, cy + s * 0.7, cx + s / 2, cy + s * 0.3);
+    ctx.bezierCurveTo(cx + s / 2, cy, cx, cy, cx, cy + s * 0.3);
+  
     ctx.closePath();
     ctx.fill();
   }, []);
+  
+  
 
   return (
     <div className="intro-screen">

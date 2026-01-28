@@ -38,19 +38,12 @@ body {
   overflow: hidden;
 }
 
-/* =========================================================
-   LAYERING PRO (intro au-dessus, message en dessous)
-   Cause du bug: `.animated-message` et `.intro-screen` sont
-   tous les deux en `position: absolute`; sans règles strictes
-   de z-index / stacking context, ils peuvent se recouvrir.
-   ========================================================= */
-
-/* Bonus: tant que l'intro est visible, on masque le message (CSS only) */
+/* Masquer le message tant que l'intro est visible */
 .app-container:has(.intro-screen) .animated-message {
   display: none !important;
 }
 
-/* ligne blanche bas écran */
+/* Ligne bas écran */
 .app-container::after {
   content: "";
   position: absolute;
@@ -91,21 +84,69 @@ body {
   margin-bottom: 0.4em;
   white-space: pre-wrap;
   min-height: 1.6em;
-  text-align: center;
   width: 100%;
 }
 
-.message-line:empty {
-  min-height: 0.8em;
-  margin-bottom: 0.2em;
-}
-
-/* ================= CURSOR ================= */
 .cursor {
   display: inline-block;
   margin-left: 3px;
   color: #ff69b4;
   animation: blink 1s steps(1) infinite;
+}
+
+/* ================= INTRO SCREEN ================= */
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+
+.intro-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+/* ================= COEUR (FIX IMPORTANT) ================= */
+.intro-heart {
+  width: 160px;        /* même taille que le canvas */
+  height: 160px;
+  display: block;
+  animation: heartPulse 1.8s ease-in-out infinite;
+  cursor: pointer;
+}
+
+/* ================= TEXTE ================= */
+.intro-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+}
+
+.click-me {
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+
+.birthday-queen {
+  font-size: 1.7rem;
+  font-weight: 400;
+}
+
+/* UNDERLINE */
+.underline {
+  width: 160px;
+  height: 2px;
+  background: #ffb6c1;
+  margin-top: 6px;
+  animation: underlineGrow 1s ease-out forwards;
 }
 
 /* ================= ANIMATIONS ================= */
@@ -126,67 +167,6 @@ body {
   }
 }
 
-/* ================= INTRO SCREEN ================= */
-.intro-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #000;
-}
-
-/* CONTENU INTRO */
-.intro-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 26px; /* 🔥 meilleur équilibre visuel */
-}
-
-
-/* COEUR */
-.intro-heart {
-  width: 200px;
-  height: 200px;
-  display: block;
-}
-
-
-.intro-heart:hover {
-  transform: scale(1.15);
-}
-
-/* TEXTE INTRO */
-.intro-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  color: #fff;
-}
-
-.click-me {
-  font-size: 1.4rem;
-  font-weight: 300;
-}
-
-.birthday-queen {
-  font-size: 1.8rem;
-  font-weight: 400;
-}
-
-/* UNDERLINE */
-.underline {
-  width: 180px;
-  height: 2px;
-  background: #ffb6c1;
-  margin-top: 6px;
-  animation: underlineGrow 1s ease-out forwards;
-}
-
-/* ================= KEYFRAMES ================= */
 @keyframes heartPulse {
   0%,
   100% {
@@ -194,7 +174,7 @@ body {
     opacity: 1;
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.12);
     opacity: 0.85;
   }
 }
@@ -204,19 +184,15 @@ body {
     width: 0;
   }
   to {
-    width: 180px;
+    width: 160px;
   }
 }
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
-  .intro-content {
-    gap: 16px;
-  }
-
   .intro-heart {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
   }
 
   .birthday-queen {
@@ -224,18 +200,14 @@ body {
   }
 
   .underline {
-    width: 150px;
+    width: 140px;
   }
 }
 
 @media (max-width: 480px) {
-  .intro-content {
-    gap: 14px;
-  }
-
   .intro-heart {
-    width: 140px;
-    height: 140px;
+    width: 110px;
+    height: 110px;
   }
 
   .birthday-queen {
