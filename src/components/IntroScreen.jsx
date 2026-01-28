@@ -11,7 +11,9 @@ const IntroScreen = ({ onStart }) => {
     if (!ctx) return;
 
     // Taille plus nette (retina-safe)
-    const cssSize = 190; // taille visible (plus grand)
+    // Taille responsive (le inline style doit rester cohérent avec le mobile)
+    const shortestSide = Math.min(window.innerWidth, window.innerHeight);
+    const cssSize = Math.round(Math.min(190, Math.max(110, shortestSide * 0.22)));
     const dpr = window.devicePixelRatio || 1;
     canvas.width = Math.floor(cssSize * dpr);
     canvas.height = Math.floor(cssSize * dpr);
@@ -25,7 +27,7 @@ const IntroScreen = ({ onStart }) => {
 
     const cx = cssSize / 2;
     const cy = cssSize / 2;
-    const s = 62;
+    const s = cssSize * 0.33;
 
     ctx.fillStyle = "#FF6F91";
     ctx.shadowBlur = 10;
@@ -60,7 +62,15 @@ const IntroScreen = ({ onStart }) => {
 
   return (
     <div className="intro-screen">
-      <div className="intro-content" onClick={onStart} role="button" tabIndex={0}>
+      <div
+        className="intro-content"
+        onClick={onStart}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") onStart();
+        }}
+        role="button"
+        tabIndex={0}
+      >
         <canvas
           ref={heartRef}
           className="intro-heart"
