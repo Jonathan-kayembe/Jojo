@@ -67,8 +67,8 @@ body {
   color: #ffffff;
   font-size: clamp(0.9rem, 1.8vw, 1.3rem);
   font-weight: 500;
-  line-height: 1.8;
-  letter-spacing: 0.8px;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
   text-shadow:
     0 0 20px rgba(255, 255, 255, 0.8),
     0 0 40px rgba(255, 192, 203, 0.6),
@@ -81,10 +81,15 @@ body {
 }
 
 .message-line {
-  margin-bottom: 0.4em;
+  margin-bottom: 0.2em;
   white-space: pre-wrap;
-  min-height: 1.6em;
+  min-height: 1.2em;
   width: 100%;
+}
+
+.message-line:empty {
+  margin-bottom: 0.1em;
+  min-height: 0.5em;
 }
 
 .cursor {
