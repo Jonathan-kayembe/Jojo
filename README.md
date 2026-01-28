@@ -76,6 +76,41 @@ Vous pouvez modifier :
 - **La vitesse d'animation** : Ajustez les délais et vitesses dans les composants
 - **La zone protégée** : Modifiez `textZoneRadius` pour changer l'espace autour du texte
 
+## 🚀 Déploiement sur GitHub Pages
+
+Ce projet est configuré pour être déployé automatiquement sur GitHub Pages.
+
+### Configuration
+
+1. **Important** : Modifiez le nom du dépôt dans `vite.config.js` si votre dépôt GitHub a un nom différent :
+   ```js
+   base: process.env.GITHUB_PAGES ? '/VOTRE-NOM-DE-REPO/' : '/',
+   ```
+
+2. **Activer GitHub Pages** :
+   - Allez dans les paramètres de votre dépôt GitHub
+   - Section "Pages" dans le menu de gauche
+   - Source : sélectionnez "GitHub Actions"
+
+3. **Pousser le code** :
+   ```bash
+   git add .
+   git commit -m "Setup GitHub Pages deployment"
+   git push origin main
+   ```
+
+4. Le workflow GitHub Actions se déclenchera automatiquement et déploiera votre site.
+
+5. Votre site sera accessible à : `https://VOTRE-USERNAME.github.io/VOTRE-NOM-DE-REPO/`
+
+### Déploiement manuel
+
+Si vous préférez déployer manuellement :
+```bash
+npm run build
+# Copiez le contenu du dossier dist/ dans la branche gh-pages
+```
+
 ## 📝 Licence
 
 Projet personnel - Libre d'utilisation
