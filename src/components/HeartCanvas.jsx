@@ -34,46 +34,39 @@ const HeartCanvas = () => {
 
     /* --------- GÉNÉRER PLUSIEURS CŒURS DISPERSÉS SUR TOUT L'ÉCRAN ---------- */
     const generateHearts = () => {
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
       const hearts = [];
-      const numHearts = 600; // Nombre de cœurs considérablement augmenté
-      const textZoneRadius = 200; // Zone à éviter autour du texte central
+      const numHearts = 300; // Nombre réduit de cœurs
 
       for (let i = 0; i < numHearts; i++) {
-        let x, y;
-        let attempts = 0;
-        let validPosition = false;
+        // Générer des positions aléatoires sur tout l'écran (y compris derrière le texte)
+        const x = 30 + Math.random() * (canvas.width - 60);
+        const y = 30 + Math.random() * (canvas.height - 60);
 
-        // Générer des positions aléatoires sur tout l'écran
-        while (!validPosition && attempts < 50) {
-          x = 40 + Math.random() * (canvas.width - 80);
-          y = 40 + Math.random() * (canvas.height - 80);
-
-          // Vérifier que le cœur n'est pas trop proche du texte central
-          const distFromCenter = Math.sqrt(
-            Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2)
-          );
-
-          if (distFromCenter > textZoneRadius) {
-            validPosition = true;
-          }
-          attempts++;
+        // Tailles très variées : petits (6-12), moyens (12-20), grands (20-35)
+        const sizeType = Math.random();
+        let size;
+        if (sizeType < 0.5) {
+          // 50% petits cœurs
+          size = 6 + Math.random() * 6;
+        } else if (sizeType < 0.85) {
+          // 35% moyens cœurs
+          size = 12 + Math.random() * 8;
+        } else {
+          // 15% grands cœurs
+          size = 20 + Math.random() * 15;
         }
 
-        if (validPosition) {
-          hearts.push({
-            x,
-            y,
-            size: 10 + Math.random() * 18, // Tailles variées
-            color: palette[Math.floor(Math.random() * palette.length)],
-            phase: Math.random() * Math.PI * 2,
-            speed: 0.3 + Math.random() * 0.7,
-            rotation: Math.random() * Math.PI * 2,
-            scale: 0.7 + Math.random() * 0.5,
-            opacity: 0.4 + Math.random() * 0.6, // Opacité variée
-          });
-        }
+        hearts.push({
+          x,
+          y,
+          size,
+          color: palette[Math.floor(Math.random() * palette.length)],
+          phase: Math.random() * Math.PI * 2,
+          speed: 0.3 + Math.random() * 0.7,
+          rotation: Math.random() * Math.PI * 2,
+          scale: 0.7 + Math.random() * 0.5,
+          opacity: 0.3 + Math.random() * 0.5, // Opacité réduite pour ne pas masquer le texte
+        });
       }
       return hearts;
     };
